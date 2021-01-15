@@ -1,6 +1,142 @@
 prefix p:<http://www.inria.fr/2007/09/11/humans.rdfs#>
+prefix xsd:<http://www.w3.org/2001/XMLSchema#>
 
 select * where {
 ?x a p:Man
 }
+
+select * where {
+	?x a p:Woman
+}
+
+select * where {
+	?x a p:Person
+}
+
+pour les y creer la reverse
+select * where {
+	?x p:hasChild ?y
+}
+
+select * where {
+	?x p:hasChild ?y
+}
+
+select * where {
+	?x p:hasSpouse ?y
+}
+
+select * where {
+	?x p:hasSpouse ?y
+	?y p:hasSpouse ?x
+}
+
+select * where {
+?x p:hasFather ?y
+}
+
+celle ci aussi existe pas
+select * where {
+?x p:hasFather ?y
+?y p:hasChild ?x
+}
+
+select * where {
+?x p:hasMother ?y
+}
+celle ci aussi existe pas
+select * where {
+?x p:hasMother ?y
+?y p:hasChild ?x
+}
+
+select * where {
+?x p:hasFriend ?y
+}
+celle ci aussi existe pas
+select * where {
+?x p:hasFriend ?y
+?y p:hasFriend ?x
+}
+
+celle la marche
+select * where {
+?x a p:Person
+?x p:name "John"
+}
+
+celle la marche pas
+select * where {
+?x a p:Man
+?x p:name "John"
+}
+la meme chose pour :
+John Mark Eve Laura William Karl 
+
+maintenant inverse ceux qui sont man ou woman sont des personnes :
+Man : Pierre, Gaston, Lucas, Jack, Harry
+Woman : Jennifer,Flora, Alice
+
+select * where {
+?x a p:Person
+?x p:name "Pierre"
+}
+
+
+Laura Lecturer et researcher
+celle la marche pas 
+select * where {
+?x a p:Woman
+?x p:name "Laura"
+}
+
+select * where {
+?x a p:Person
+?x p:name "Laura"
+}
+
+select * where {
+?x a p:Researcher
+?x p:name "Laura"
+}
+
+select * where {
+?x a p:Lecturer
+?x p:name "Laura"
+}
+ici David Gaston Laura(rdfs activé)
+select * where {
+?x a p:Researcher
+}
+ici Eve et Laura(rdfs activé)
+select * where {
+?x a p:Researcher
+}
+
+
+Si catherine has mother Laura et william has spouse laura alors laura hasfather william
+select * where {
+?x (p:hasMother|p:hasFather) ?y
+optionnal {?z p:hasSpouse ?y}
+}
+
+Si x hasfriend y et y hasfriend ou hasSpouse z alors x hasfriend z
+select * where {
+?x p:hasFriend ?y
+?y (p:hasFriend|p:hasSpouse) ?z
+}
+
+select * where {
+?x p:shirtsize "12"^^xsd:integer
+}
+
+Creer type adulte si >18
+hasSpouse subpropertyof hasfriend 
+
+pour toute propriété creer subpropriété la meme (régle 6)
+pour toute propriété qui a une sous propriété si relation avec sous propriété alors donner relation avec propriété (régle 7)
+
+si une ressource prend un type qui lui meme est une sous classe alors lui attribué la sous classe et la classe (régle 9)
+toute classe est sous classe d'elle même (régle 10)
+identifier sous classes sur 3 étages et donner subclassof entre 1er et troisieme (régle 11)
 
