@@ -13,3 +13,15 @@ To be delivered in pairs: a .zip file containing :
 ***
 
 lien vers les 13 commandements : https://www.w3.org/TR/rdf11-mt/#rdfs-entailment
+
+*** 
+Erwen stp si tu peux finir la description des régles (de 1 à 6) que j'ai commencé dans select.txt
++ Me dire si tu as d'autres query qu'on peut tester qui te viennent à l'esprit
++ critiques ?
+***
+ce qu'il reste à faire : -lancer les query et ecrire la comparaison entre rdfs activé et non dans report.docx
+-écrire les construct qui sont décrites dans select.txt dans construct.txt
+-changer select.txt pour qu'il ne contienne que les queries
+-Rendre en pdf report.docx
+
+
