@@ -51,3 +51,105 @@ where {
 	?z a rdfs:subClassOf ?y
 	?y a rdfs:subClassOf ?x
 }
+
+
+#Constructs basés sur les queries de select.txt
+prefix p:<http://www.inria.fr/2007/09/11/humans.rdfs#>
+prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+#Construct 1 correspond à la query #
+
+#Construct 2 correspond à la query #
+
+#Construct 3 correspond à la query #
+
+#Construct 4 correspond à la query #
+
+#Construct 5 correspond à la query #
+
+#Construct 6 correspond à la query #
+
+#Construct 7 correspond à la query #
+
+#Construct 8 correspond à la query #
+
+#Construct 9 correspond à la query #
+
+#Construct 10 correspond à la query #
+
+#Construct 11 correspond à la query #
+
+#Construct 12 correspond à la query #
+
+#Construct 13 correspond à la query #16
+construct {
+	?x a p:Woman
+} where {
+	?x p:name "Laura"
+}
+
+#Construct 14 correspond à la query #21
+construct {
+	?x a p:Person
+} where {
+	?x p:name "Gaston"
+}
+#Construct 15 correspond à la query #22
+construct {
+	?x a p:Lecturer
+}where {
+	?x p:name "Gaston"
+}
+#Construct 16 correspond à la query #24
+construct {
+	?x a p:Man
+}where {
+	?x p:name "David"
+}
+#Construct 17 correspond à la query #26
+construct {
+	?x a p:Lecturer
+}where {
+	?x p:name "David"
+}
+
+#Construct 18 correspond à la première idée
+construct {
+	?x p:hasFriend ?z
+} where {
+	?x p:hasFriend ?y
+	?y (p:hasFriend|p:hasSpouse) ?z
+}
+
+#Construct 19 correspond à la seconde idée
+Si catherine has mother Laura et william has spouse laura alors laura hasfather william
+construct{
+	?x p:hasFather ?z
+}
+where {
+	?x p:hasMother ?y
+optionnal {?z p:hasSpouse ?y}
+}
+construct{
+	?x p:hasMother ?z
+}
+where {
+	?x p:hasFather ?y
+optionnal {?z p:hasSpouse ?y}
+}
+
+#Construct 20 correspond à la troisième idée
+construct {
+	?x a p:Adult
+} where {
+	?x p:age ?y
+	filter(?y > 18)
+	optional{
+		?x p:age ?y
+		filter (?y >"18"^^xsd:integer)
+	}
+}
+
+#Construct 21 correspond à la quatrième idée
+construct{
+	p:hasSpouse rdfs:subpropertyof p:hasfriend
+}

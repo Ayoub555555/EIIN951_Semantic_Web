@@ -1,142 +1,183 @@
 prefix p:<http://www.inria.fr/2007/09/11/humans.rdfs#>
 prefix xsd:<http://www.w3.org/2001/XMLSchema#>
 
+#query 1
 select * where {
-?x a p:Man
+	?x a p:Man
 }
 
+#query 2
 select * where {
 	?x a p:Woman
 }
 
+#query 3
 select * where {
 	?x a p:Person
 }
 
+#query 4
 pour les y creer la reverse
 select * where {
 	?x p:hasChild ?y
 }
 
+#query 5
 select * where {
 	?x p:hasChild ?y
 }
 
+#query 6
 select * where {
 	?x p:hasSpouse ?y
 }
 
+#query 7
 select * where {
 	?x p:hasSpouse ?y
 	?y p:hasSpouse ?x
 }
 
+#query 8
 select * where {
 ?x p:hasFather ?y
 }
 
+#query 9
 celle ci aussi existe pas
 select * where {
 ?x p:hasFather ?y
 ?y p:hasChild ?x
 }
 
+#query 10
 select * where {
 ?x p:hasMother ?y
 }
+
 celle ci aussi existe pas
 select * where {
 ?x p:hasMother ?y
 ?y p:hasChild ?x
 }
 
+#query 11
 select * where {
 ?x p:hasFriend ?y
 }
+
+#query 12
 celle ci aussi existe pas
 select * where {
 ?x p:hasFriend ?y
 ?y p:hasFriend ?x
 }
 
+#query 13
 celle la marche
 select * where {
 ?x a p:Person
 ?x p:name "John"
 }
 
+#query 14
 celle la marche pas
 select * where {
 ?x a p:Man
 ?x p:name "John"
 }
+
 la meme chose pour :
 John Mark Eve Laura William Karl 
 
 maintenant inverse ceux qui sont man ou woman sont des personnes :
 Man : Pierre, Gaston, Lucas, Jack, Harry
 Woman : Jennifer,Flora, Alice
-
+#query 15
 select * where {
 ?x a p:Person
 ?x p:name "Pierre"
 }
 
-
-Laura Lecturer et researcher
-celle la marche pas 
+#query 16
 select * where {
 ?x a p:Woman
 ?x p:name "Laura"
 }
 
+#query 17 
 select * where {
 ?x a p:Person
 ?x p:name "Laura"
 }
 
+#query 18
 select * where {
 ?x a p:Researcher
 ?x p:name "Laura"
 }
 
+#query 19
 select * where {
 ?x a p:Lecturer
 ?x p:name "Laura"
 }
-ici David Gaston Laura(rdfs activé)
+
+#query 20
 select * where {
 ?x a p:Researcher
 }
-ici Eve et Laura(rdfs activé)
+
+#query 21
+select * where {
+?x a p:Person
+?x p:name "Gaston"
+}
+
+#query 22
+select * where {
+?x a p:Lecturer
+?x p:name "Gaston"
+}
+
+#query 23
 select * where {
 ?x a p:Researcher
+?x p:name "Gaston"
 }
 
-
-Si catherine has mother Laura et william has spouse laura alors laura hasfather william
+#query 24
 select * where {
-?x (p:hasMother|p:hasFather) ?y
-optionnal {?z p:hasSpouse ?y}
+?x a p:Man
+?x p:name "Gaston"
 }
 
-Si x hasfriend y et y hasfriend ou hasSpouse z alors x hasfriend z
+#query 25
 select * where {
-?x p:hasFriend ?y
-?y (p:hasFriend|p:hasSpouse) ?z
+?x a p:Person
+?x p:name "David"
 }
 
+#query 26
 select * where {
-?x p:shirtsize "12"^^xsd:integer
+?x a p:Lecturer
+?x p:name "David"
 }
 
-Creer type adulte si >18
-hasSpouse subpropertyof hasfriend 
+#query 27
+select * where {
+?x a p:Researcher
+?x p:name "David"
+}
 
-pour toute propriété creer subpropriété la meme (régle 6)
-pour toute propriété qui a est une sous propriété d’une autre  ces deux propriétés relient les même couples sujets objets 
+#query 28
+select * where {
+?x a p:Man
+?x p:name "David"
+}
 
-si une ressource prend un type qui lui meme est une sous classe alors lui attribué la sous classe et la classe (régle 9)
-toute classe est sous classe d'elle même (régle 10)
-identifier sous classes sur 3 étages et donner subclassof entre 1er et troisieme (régle 11)
+
+#query 29 Il nous faut test avec hasParent,hasMother et hasFather car hasMother et hasfather sous propriété de hasAncestor
+
+
 
