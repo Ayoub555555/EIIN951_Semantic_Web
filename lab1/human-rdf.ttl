@@ -1,3 +1,5 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix h: <http://www.inria.fr/2007/09/11/humans.rdfs#> .
 @prefix i: <http://www.inria.fr/2007/09/11/humans.rdfs-instances#> .
 
@@ -110,4 +112,9 @@ i:Karl
 
 i:Catherine
 	a h:Woman ;
-	h:hasMother i:Laura .
+	h:hasMother i:Laura ;
+	h:bestLovers [a rdf:List;
+		rdf:_1 i:Harry;
+		rdf:_2 i:John;
+		rdf:_3 i:Mark;
+	] .
