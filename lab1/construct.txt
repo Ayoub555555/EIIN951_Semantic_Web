@@ -1,0 +1,53 @@
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+#régle 6:
+construct {
+	?p rdfs:subPropertyOf ?p
+}
+where {
+	?x ?p ?z
+}
+
+#régle 7
+construct {
+	?x ?p1 ?y
+}
+where {
+	?p rdfs:subPropertyOf ?p1
+	?x ?p ?y
+}
+
+#régle 8 
+construct {
+	?c rdfs:subClassOf rdfs:Resource
+}
+where {
+	?x a ?c
+}
+
+#régle 9
+construct {
+	?x a ?z
+	?x a ?y
+}
+where {
+	?x a ?z
+	?z rdfs:subClassOf ?y
+}
+
+#régle 10
+construct {
+	?c rdfs:subClassOf ?c
+}
+where {
+	?x a ?c
+}
+
+#régle 11
+construct {
+	?z rdfs:subClassOf ?x
+}
+where {
+	?z a rdfs:subClassOf ?y
+	?y a rdfs:subClassOf ?x
+}

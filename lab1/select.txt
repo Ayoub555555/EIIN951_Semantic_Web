@@ -134,7 +134,7 @@ Creer type adulte si >18
 hasSpouse subpropertyof hasfriend 
 
 pour toute propriété creer subpropriété la meme (régle 6)
-pour toute propriété qui a une sous propriété si relation avec sous propriété alors donner relation avec propriété (régle 7)
+pour toute propriété qui a est une sous propriété d’une autre  ces deux propriétés relient les même couples sujets objets 
 
 si une ressource prend un type qui lui meme est une sous classe alors lui attribué la sous classe et la classe (régle 9)
 toute classe est sous classe d'elle même (régle 10)
