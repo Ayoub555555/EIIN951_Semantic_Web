@@ -1,3 +1,4 @@
+# Dans ce fichier nous avons simulé ce que les régles ont fait avec des construct
 prefix p:<http://www.inria.fr/2007/09/11/humans.rdfs#>
 prefix xsd:<http://www.w3.org/2001/XMLSchema#>
 
@@ -175,11 +176,3 @@ select * where {
 ?x a p:Man
 ?x p:name "David"
 }
-
-
-#query 29 Il nous faut test avec hasParent,hasMother et hasFather car hasMother et hasfather sous propriété de hasAncestor
-
-
-faut que tu dises genre le domain de hasMother c'est Woman et que les sujets prennent le type du sujet
-dire qu'on a simulé ce que les régles ont fait avec des construct
-construct hasparent quand hasfather ou hasmother

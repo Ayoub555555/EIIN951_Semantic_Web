@@ -1,61 +1,7 @@
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
-#régle 6:
-construct {
-	?p rdfs:subPropertyOf ?p
-}
-where {
-	?x ?p ?z
-}
-
-#régle 7
-construct {
-	?x ?p1 ?y
-}
-where {
-	?p rdfs:subPropertyOf ?p1
-	?x ?p ?y
-}
-
-#régle 8 
-construct {
-	?c rdfs:subClassOf rdfs:Resource
-}
-where {
-	?x a ?c
-}
-
-#régle 9
-construct {
-	?x a ?z
-	?x a ?y
-}
-where {
-	?x a ?z
-	?z rdfs:subClassOf ?y
-}
-
-#régle 10
-construct {
-	?c rdfs:subClassOf ?c
-}
-where {
-	?x a ?c
-}
-
-#régle 11
-construct {
-	?z rdfs:subClassOf ?x
-}
-where {
-	?z a rdfs:subClassOf ?y
-	?y a rdfs:subClassOf ?x
-}
-
-
 #Constructs basés sur les queries de select.txt
 prefix p:<http://www.inria.fr/2007/09/11/humans.rdfs#>
 prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+#Nous avons abandonné après le message de Mme Faron qui stipule que les regles spécifiques ne sont pas nesseçaires
 #Construct 1 correspond à la query #
 
 #Construct 2 correspond à la query #

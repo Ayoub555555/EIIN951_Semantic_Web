@@ -13,10 +13,12 @@ Dans l'explication des exemples, on utilise les préfixes suivant :
 
 ## RDFS1
 ### *Description*
-Cette règle stipule que tout Uri de nos données doit avoir le type rdfs:Datatype
+Cette règle stipule que tout Iri(c'est à dire valeurs literrales/Literal <br>
+Values definition stipulée dans la recommandation) <br>
+dans nos données doit avoir le type rdfs:Datatype. <br>
+Les Iri peuvent seulement être des objets.
 
 ### *Exemple*
-
 
 SPARCL test query :
 ```{SPARCL}
@@ -27,11 +29,11 @@ select * where {
 ```
 Résultat avec inférence RDFS :
 ```{csv}
-Rien car les données ne contiennent pas de litteral values, que des literaux
+Rien car les données ne contiennent pas de litteral values
 ```
 Résultat sans inférence RDFS :
 ```{csv}
-Rien car les données ne contiennent pas de litteral values, que des literaux
+Rien car les données ne contiennent pas de litteral values
 ```
 
 ***
@@ -154,7 +156,7 @@ Résultat sans inférence RDFS :
 
 ## RDFS6
 ### *Description*
-Cette règle stipule que toute rdf:Property doit être sous propriété de elle même.
+Cette règle stipule que toute rdf:Property doit être sous propriété d'elle même.
 
 ### *Exemple*
 On prend la liste des sous propriété de h:hasParent.
@@ -182,7 +184,7 @@ Résultat sans inférence RDFS :
 
 ## RDFS7
 ### *Description*
-Cette règle stipule que si une propriété aaa possède des sous propriétés (bbb par exemple), alors pour tout triplet de la forme (xxx aaa yyy) un triplet de la forme (xxx bbb yyy) doit être créé.
+Cette règle stipule que pour toute propriété qui est sous propriété d’une autre ces deux propriétés relient les même couples sujets objets. 
 
 ### *Exemple*
 Pour l'exemple, on regarde les relations qui existent entre i:Mark et i:John. i:John est le père (h:hasFather) de i:Mark et par inférence, c'est donc aussi un de ses parents (h:hasParent) et un de ses ancêtres (h:hasAncestor).
@@ -209,7 +211,7 @@ Résultat sans inférence RDFS :
 
 ## RDFS8
 ### *Description*
-Cette règle stipule que toutes les classes doivent hériter entre autre de rdfs:Ressource.
+Cette règle stipule que toutes les classes doivent être une sous classe de rdfs:Ressource.
 
 ### *Exemple*
 Pour vérifier, on regarde la liste des sous-classes de la classe h:Man.
@@ -237,8 +239,8 @@ Résultat sans inférence RDFS :
 
 ## RDFS9
 ### *Description*
-Cette règle stipule que si une classe xxx hérite d'une classe yyy (xxx rdfs:subClassOf yyy) alors un objet zzz de rdf:type xxx doit aussi être du rdf:type yyy.
-
+Cette règle stipule que si une ressource est de type une certaine classe qui elle même est une sous classe alors lui attribuer la sous classe et la classe
+c'est une transitivité mais seulement à deux "étages".
 ### *Exemple*
 On regarde les rdf:type de i:Mark. i:Mark est définie comme une h:Person or h:Person hérite de h:Animal donc i:Mark doit aussi être un animal.
 
@@ -263,7 +265,7 @@ Résultat sans inférence RDFS :
 
 ## RDFS10
 ### *Description*
-Cette règle stipule qu'une rdfs:Class hérite toujours d'entre elle même (xxx rdfs:subClassOf xxx). C'est la même règle que RDFS6 pour les rdfs:Class au lieu des rdfs:Property.
+Cette règle stipule que toute classe est sous classe d'elle même. C'est la même règle que RDFS6 mais pour les rdfs:Class au lieu des rdfs:Property.
 
 ### *Exemple*
 Pour vérifier, on regarde la liste des sous-classes de la classe h:Man.
@@ -291,11 +293,11 @@ Résultat sans inférence RDFS :
 
 ## RDFS11
 ### *Description*
-Cette règle stipule la transitivité de la propriété rdfs:subClassOf : si on a 3 classes xxx, yyy et zzz en relations suivantes : (xxx rdfs:subClassOf  yyy) et (yyy rdfs:subClassOf zzz) alors xxx en tant que sous-classe de la classe yyy elle même sous-classe de zzz, est une sous-classe de zzz : (xxx rdfs:subClassOf zzz) .
-C'est la même règle que RDFS5 pour les rdfs:Class au lieu des rdfs:Property.
+Cette règle stipule la transitivité de la propriété rdfs:subClassOf : si on a 3 classes xxx, yyy et zzz en relations suivantes : yyy est une sous classe de xxx et zzz une sous classe d'y alors zzz est une sous classe de x
+C'est la même règle que RDFS5 mais pour les rdfs:Class au lieu des rdfs:Property.
 
 ### *Exemple*
-POur notre exemple on vérifie les sous-classe de h:Man dans lesquels on doit retrouver h:Male, h:Person et h:Animal.
+Pour notre exemple on vérifie les "sur"-classes (contraire de sous classes) de h:Man dans lesquels on doit retrouver h:Male, h:Person et h:Animal.
 
 SPARCL test query :
 ```{SPARCL}
@@ -356,10 +358,13 @@ Résultat sans inférence RDFS :
 
 ## RDFS13
 ### *Description*
-La treizième et dernière loi stipule que tout ce qui a pour classe rdfs:Datatype sont des litéraux.
+La treizième et dernière loi stipule que tout ce qui a comme classe rdfs:Datatype sont des litéraux.
 
 ### *Exemple*
-
+On test alors pour tout les triplets xxx <br>
+qui ont comme classe rdfs:Datatype <br>
+s'il y a des triplets qui sont de type rdfs:Literal<br>
+ mais qui sont aussi des sous classes de xxx 
 SPARCL test query :
 ```{SPARCL}
 select * where{
