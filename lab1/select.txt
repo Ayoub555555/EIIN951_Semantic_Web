@@ -180,4 +180,6 @@ select * where {
 #query 29 Il nous faut test avec hasParent,hasMother et hasFather car hasMother et hasfather sous propriété de hasAncestor
 
 
-
+faut que tu dises genre le domain de hasMother c'est Woman et que les sujets prennent le type du sujet
+dire qu'on a simulé ce que les régles ont fait avec des construct
+construct hasparent quand hasfather ou hasmother
