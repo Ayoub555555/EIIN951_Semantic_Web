@@ -13,22 +13,25 @@ Dans l'explication des exemples, on utilise les préfixes suivant :
 
 ## RDFS1
 ### *Description*
-Cette règle stipule que ...
+Cette règle stipule que tout Uri de nos données doit avoir le type rdfs:Datatype
 
 ### *Exemple*
 
 
 SPARCL test query :
 ```{SPARCL}
-
+select * where {
+	?x ?p ?z
+	?z a rdfs:Datatype
+}
 ```
 Résultat avec inférence RDFS :
 ```{csv}
-
+Rien car les données ne contiennent pas de litteral values, que des literaux
 ```
 Résultat sans inférence RDFS :
 ```{csv}
-
+Rien car les données ne contiennent pas de litteral values, que des literaux
 ```
 
 ***
@@ -353,19 +356,23 @@ Résultat sans inférence RDFS :
 
 ## RDFS13
 ### *Description*
-La treizième et dernière loi stipule que tous les rdfs:Datatype sont des litéraux.
+La treizième et dernière loi stipule que tout ce qui a pour classe rdfs:Datatype sont des litéraux.
 
 ### *Exemple*
 
 SPARCL test query :
 ```{SPARCL}
-
+select * where{
+?x a rdfs:Datatype
+?y rdfs:subClassOf ?x
+?y a rdfs:Literal 
+}
 ```
 Résultat avec inférence RDFS :
 ```{csv}
-
+Rien car les données ne contiennent pas de rdfs:Literal (verifiable avec select * where {?x a rdfs:Literal})
 ```
 Résultat sans inférence RDFS :
 ```{csv}
-
+Rien car les données ne contiennent pas de rdfs:Literal (verifiable avec select * where {?x a rdfs:Literal})
 ```

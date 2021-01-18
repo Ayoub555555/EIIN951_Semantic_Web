@@ -9,7 +9,15 @@ La description des 13 règles est déjà précisée dans select.md .
 
 ## RDFS1
 ```{rdf}
-
+construct {?x a rdfs:Datatype}
+where {
+	?x ?p ?z
+	filter(iri(?x))
+}
+construct {?z a rdfs:Datatype}
+where { ?x ?p ?z 
+	filter(iri(?z))
+}
 ``` 	
 ***
 
