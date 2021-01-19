@@ -1,15 +1,15 @@
 OWL Lab
 # Exercice 1
 Copy the ontology defined in human.rdfs in a new file humans.owl and complete it :
-- Declare that hasSpouse and hasFriend both are symmetric properties.
-- Declare that hasAncestor is transitive.
-- Declare that hasChild is the inverse property of hasParent.
-- Declare that classes Male and Female are disjoint.
-- Declare that class Professor is the intersection of class Lecturer and class Researcher.
-- Declare that class Academic is the union of class Lecturer and class Researcher.
-- Use two restrictions to declare that any person married with a man is a woman and that any person married with a woman is a man.
-- Use a restriction to declare that any person has a parent who is a woman.
-- For each of the above declarations, write a SPARQL query showing that Corese implements part of the OWL language (you will realize that the answers to the queries are different when you load the ontology in humans.rdfs or the ontology in humans.owl).
+1. Declare that hasSpouse and hasFriend both are symmetric properties.
+2. Declare that hasAncestor is transitive.
+3. Declare that hasChild is the inverse property of hasParent.
+4. Declare that classes Male and Female are disjoint.
+5. Declare that class Professor is the intersection of class Lecturer and class Researcher.
+6. Declare that class Academic is the union of class Lecturer and class Researcher.
+7. Use two restrictions to declare that any person married with a man is a woman and that any person married with a woman is a man.
+8. Use a restriction to declare that any person has a parent who is a woman.
+9. For each of the above declarations, write a SPARQL query showing that Corese implements part of the OWL language (you will realize that the answers to the queries are different when you load the ontology in humans.rdfs or the ontology in humans.owl).
 
 # Exercice 2
 Load your file humans.owl in the OWL editor Protégé and visualize your ontology.

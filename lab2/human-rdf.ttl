@@ -1,0 +1,120 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix h: <http://www.inria.fr/2007/09/11/humans.rdfs#> .
+@prefix i: <http://www.inria.fr/2007/09/11/humans.rdfs-instances#> .
+
+i:Harry
+	a h:Man ;
+	h:name "Harry" ;
+	h:hasChild i:John ;
+	h:hasSpouse i:Sophie .
+
+i:John
+	a h:Person ;
+	h:name "John" ;
+	h:shoesize 14 ;
+	h:age 37 ;
+	h:shirtsize 12 ;
+	h:trouserssize 44 ;
+	h:hasParent i:Sophie .
+
+i:Mark
+	a h:Person ;
+	h:name "Mark" ;
+	h:shoesize 8 ;
+	h:age 14 ;
+	h:shirtsize 9 ;
+	h:trouserssize 36 ;
+	h:hasFather i:John .
+
+i:Eve
+	a h:Person, h:Lecturer ;
+	h:hasSpouse i:David ;
+	h:name "Eve" ;
+	h:hasFriend i:Alice .
+
+i:David
+	a h:Person, h:Researcher ;
+	h:hasFriend i:Gaston ;
+	h:name "David" .
+
+i:Alice
+	a h:Woman ;
+	h:hasFriend i:John ;
+	h:name "Alice" .
+
+i:Jack
+	a h:Man ;
+	h:hasFriend i:Alice ;
+	h:hasChild i:Harry ;
+	h:name "Jack" .
+
+i:Flora
+	a h:Woman ;
+	h:age 95 ;
+	h:hasSpouse i:Gaston ;
+	h:hasChild i:Pierre ;
+	h:name "Flora" .
+
+i:Laura
+	a h:Person, h:Lecturer, h:Researcher ;
+	h:hasFriend i:Alice ;
+	h:name "Laura" .
+
+i:Jennifer
+	a h:Woman ;
+	h:hasSpouse i:John ;
+	h:name "Jennifer" .
+
+i:Lucas
+	a h:Man ;
+	h:shoesize 7 ;
+	h:trouserssize 28 ;
+	h:age 12 ;
+	h:shirtsize 8 ;
+	h:name "Lucas" ;
+	h:hasMother i:Catherine .
+
+i:Gaston
+	a h:Man, h:Researcher ;
+	h:shoesize 11 ;
+	h:trouserssize 38 ;
+	h:age 102 ;
+	h:shirtsize 12 ;
+	h:name "Gaston" ;
+	h:hasChild i:Pierre, i:Jack .
+
+i:William
+	a h:Person ;
+	h:hasSpouse i:Laura ;
+	h:shoesize 10 ;
+	h:age 42 ;
+	h:trouserssize 46 ;
+	h:shirtsize 13 ;
+	h:name "William" .
+
+i:Pierre
+	a h:Man ;
+	h:shoesize 8 ;
+	h:age 71 ;
+	h:trouserssize 30 ;
+	h:shirtsize 9 ;
+	h:name "Pierre" .
+
+i:Karl
+	a h:Person ;
+	h:hasSpouse i:Catherine ;
+	h:hasFriend i:Sophie ;
+	h:shoesize 7 ;
+	h:age 36 ;
+	h:shirtsize 9 ;
+	h:trouserssize 40 .
+
+i:Catherine
+	a h:Woman ;
+	h:hasMother i:Laura ;
+	h:bestLovers [a rdf:List;
+		rdf:_1 i:Harry;
+		rdf:_2 i:John;
+		rdf:_3 i:Mark;
+	] .

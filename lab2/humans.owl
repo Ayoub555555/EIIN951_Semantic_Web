@@ -1,0 +1,164 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix h: <http://www.inria.fr/2007/09/11/humans.rdfs#> .
+# 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+
+h:Animal
+	a rdfs:Class ;
+	rdfs:label "animal"@en, "animal"@fr ;
+	rdfs:comment "a living organism characterized by voluntary movement."@en, "être vivant doué de sensibilite de mobilité."@fr .
+
+h:Male
+	a rdfs:Class ;
+	rdfs:subClassOf h:Animal ;
+	# 4.
+	owl:disjointWith h:Female ;
+	rdfs:label "male"@en, "mâle"@fr ;
+	rdfs:comment "an animal that produces gametes (spermatozoa) that can fertilize female gametes (ova)."@en, "individu appartenant au sexe qui possède le pouvoir de fécondation."@fr .
+
+h:Female
+	a rdfs:Class ;
+	rdfs:subClassOf h:Animal ;
+	rdfs:label "female"@en, "femelle"@fr ;
+	rdfs:comment " an animal that produces gametes (ova) that can be fertilized by male gametes (spermatozoa)."@en, "animal appartenant au sexe apte à produire des ovules."@fr .
+
+h:Person
+	a rdfs:Class ,
+	# 7.
+	[a owl:Restriction; owl:onProperty h:hasSpouse; owl:onClass h:Man; owl:allValuesFrom h:Woman] ,
+	[a owl:Restriction; owl:onProperty h:hasSpouse; owl:onClass h:Woman; owl:allValuesFrom h:Man] ,
+	# 8.
+	[a owl:Restriction; owl:onProperty h:hasParent; owl:someValuesFrom h:Woman] ;
+	rdfs:subClassOf h:Animal ;
+	rdfs:label "person"@en, "human being"@en, "human"@en, "personne"@fr, "être humain"@fr, "humain"@fr, "homme"@fr ;
+	rdfs:comment "a member of the human species"@en, "un membre de l'espèce humaine."@fr .
+
+h:Man
+	a rdfs:Class, 
+	rdfs:subClassOf h:Person, h:Male ;
+	rdfs:label "man"@en, "homme"@fr ;
+	rdfs:comment "an adult male person"@en, "mâle adulte de l'espèce humaine."@fr .
+
+h:Woman
+	a rdfs:Class ;
+	rdfs:subClassOf h:Person, h:Female ;
+	rdfs:label "woman"@en, "femme"@fr ;
+	rdfs:comment "an adult female person"@en, "femelle adulte de l'espèce humaine."@fr .
+
+h:Lecturer
+	a rdfs:Class ;
+	rdfs:subClassOf h:Person ;
+	rdfs:label "lecturer"@en, "professeur"@fr ;
+	rdfs:comment "someone who lectures professionally"@en, "personne qui enseigne une discipline, une technique, un art."@fr .
+
+h:Researcher
+	a rdfs:Class ;
+	rdfs:subClassOf h:Person ;
+	rdfs:label "researcher"@en, "scientist"@en, "chercheur"@fr, "scientifique"@fr ;
+	rdfs:comment "a person who devotes himself to doing research"@en, "personne adonnée à des recherches spécialisées."@fr .
+
+# 5.
+h:Professor
+	a rdfs:Class ;
+	owl:intersectionOf( h:Lecturer h:Researcher ) .
+
+# 6.
+h:Academic
+	a rdfs:Class ;
+	owl:unionOf( h:Lecturer h:Researcher) .
+
+
+h:hasAncestor
+	# 2.
+	a rdf:Property, owl:TransitiveProperty;
+	rdfs:domain h:Animal ;
+	rdfs:range h:Animal ;
+	rdfs:label "has for ancestor"@en, "a pour ancêtre"@fr ;
+	rdfs:comment "relation between an animal and another animal from which it is descended."@en, "relation entre un animal et un autre animal duquel il descend."@fr .
+
+h:hasParent
+	a rdf:Property ;
+	rdfs:subPropertyOf h:hasAncestor ;
+	# 3.
+	owl:inverseOf h:hasChild ;
+	rdfs:label "has for parent"@en, "a pour parent"@fr ;
+	rdfs:comment "relation between an animal and another animal which gave birth to it."@en, "relation entre un animal et un autre animal qui lui a donné naissance."@fr .
+
+h:hasChild
+	a rdf:Property ;
+	rdfs:label "has for child"@en, "a pour enfant"@fr ;
+	rdfs:comment "relation between an animal and another animal to which it gave birth."@en, "relation entre un animal et un autre animal auquel il a donné naissance."@fr .
+
+h:hasFather
+	a rdf:Property ;
+	rdfs:subPropertyOf h:hasParent ;
+	rdfs:range h:Male ;
+	rdfs:label "has for father"@en, "a pour père"@fr ;
+	rdfs:comment "to have for parent a male."@en, "avoir pour parent un mâle."@fr .
+
+h:hasMother
+	a rdf:Property ;
+	rdfs:subPropertyOf h:hasParent ;
+	rdfs:range h:Female ;
+	rdfs:label "has for mother"@en, "a pour mère"@fr ;
+	rdfs:comment "to have for parent a female."@en, "avoir pour parent un femmelle."@fr .
+
+h:hasBrother
+	a rdf:Property ;
+	rdfs:domain h:Animal ;
+	rdfs:range h:Male ;
+	rdfs:label "has for brother"@en, "a pour frère"@fr ;
+	rdfs:comment "relation with a male who has the same parents."@en, "relation avec un mâle ayant les mêmes parents."@fr .
+
+h:hasSister
+	a rdf:Property ;
+	rdfs:domain h:Animal ;
+	rdfs:range h:Female ;
+	rdfs:label "has for sister"@en, "a pour soeur"@fr ;
+	rdfs:comment "relation with a female who has the same parents."@en, "relation avec une femelle ayant les mêmes parents."@fr .
+
+h:hasSpouse
+	# 1. 
+	a rdf:Property, owl:SymmetricProperty ;
+	rdfs:domain h:Person ;
+	rdfs:range h:Person ;
+	rdfs:label "has for spouse"@en, "est en ménage avec"@fr ;
+	rdfs:comment "a person's partner in marriage."@en, "le partenaire d'une personne dans un mariage."@fr .
+
+h:hasFriend
+	# 1. 
+	a rdf:Property, owl:SymmetricProperty ;
+	rdfs:domain h:Person ;
+	rdfs:range h:Person ;
+	rdfs:label "has for friend"@en, "a pour ami"@fr ;
+	rdfs:comment "relation between a person and another person he or she knows well and regards with affection and trust."@en, "relation entre une personne et une autre personne qui est l'objet d'un attachement privilégié."@fr .
+
+h:name
+	a rdf:Property ;
+	rdfs:label "name"@en, "nom"@fr ;
+	rdfs:comment "designation of something."@en, "désignation de quelque chose."@fr .
+
+h:shoesize
+	a rdf:Property ;
+	rdfs:domain h:Person ;
+	rdfs:label "shoe size"@en, "size"@en, "pointure"@fr ;
+	rdfs:comment "express in some way the approximate length of the shoes for a person."@en, "taille, exprimée en points, des chaussures d'une personne."@fr .
+
+h:age
+	a rdf:Property ;
+	rdfs:label "age"@en, "âge"@fr ;
+	rdfs:comment "complete existence duration."@en, "durée complète d'existence."@fr .
+
+h:shirtsize
+	a rdf:Property ;
+	rdfs:domain h:Person ;
+	rdfs:label "shirt size"@en, "size"@en, "taille de chemise"@fr, "taille"@fr ;
+	rdfs:comment "express in some way the approximate dimensions of the shirts of a person."@en, "dimensions approximatives des chemises portées par une personne."@fr .
+
+h:trouserssize
+	a rdf:Property ;
+	rdfs:domain h:Person ;
+	rdfs:label "trousers size"@en, "size"@en, "taille de pantalon"@fr, "taille"@fr ;
+	rdfs:comment "express in some way the approximate dimensions of the trousers of a person."@en, "dimensions approximatives des pantalons portés par une personne."@fr .
