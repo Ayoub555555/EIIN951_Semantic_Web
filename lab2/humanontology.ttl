@@ -4,7 +4,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix h: <http://www.inria.fr/2007/09/11/humans.rdfs#> .
-# 
+#
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 
@@ -75,7 +75,6 @@ h:Academic
 	owl:unionOf( h:Lecturer h:Researcher) .
 
 
-
 ## PROPERTIES
 
 # ObjectProperty
@@ -97,7 +96,7 @@ h:hasParent
 	rdfs:comment "relation between an animal and another animal which gave birth to it."@en, "relation entre un animal et un autre animal qui lui a donné naissance."@fr .
 
 h:hasChild
-	a owl:ObjectProperty ;
+	a owl:ObjectProperty , owl:AsymmetricProperty ;
 	rdfs:label "has for child"@en, "a pour enfant"@fr ;
 	rdfs:comment "relation between an animal and another animal to which it gave birth."@en, "relation entre un animal et un autre animal auquel il a donné naissance."@fr .
 
@@ -130,7 +129,7 @@ h:hasSister
 	rdfs:comment "relation with a female who has the same parents."@en, "relation avec une femelle ayant les mêmes parents."@fr .
 
 h:hasSpouse
-	# 1. 
+	# 1.
 	a owl:ObjectProperty, owl:SymmetricProperty ;
 	rdfs:domain h:Person ;
 	rdfs:range h:Person ;
@@ -142,7 +141,7 @@ h:hasUncle
     owl:propertyChainAxiom( h:hasParent h:hasBrother ) .
 
 h:hasFriend
-	# 1. 
+	# 1.
 	a owl:ObjectProperty, owl:SymmetricProperty ;
 	rdfs:domain h:Person ;
 	rdfs:range h:Person ;
