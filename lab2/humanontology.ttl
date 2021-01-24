@@ -92,6 +92,7 @@ h:hasParent
 	rdfs:subPropertyOf h:hasAncestor ;
 	# 3.
 	owl:inverseOf h:hasChild ;
+	a owl:IrreflexiveProperty;
 	rdfs:label "has for parent"@en, "a pour parent"@fr ;
 	rdfs:comment "relation between an animal and another animal which gave birth to it."@en, "relation entre un animal et un autre animal qui lui a donné naissance."@fr .
 
@@ -116,6 +117,7 @@ h:hasMother
 
 h:hasBrother
 	a owl:ObjectProperty ;
+	owl:propertyDisjointWith h:hasSister;
 	rdfs:domain h:Animal ;
 	rdfs:range h:Male ;
 	rdfs:label "has for brother"@en, "a pour frère"@fr ;
@@ -131,27 +133,31 @@ h:hasSister
 h:hasSpouse
 	# 1.
 	a owl:ObjectProperty, owl:SymmetricProperty ;
+	a owl:FunctionalProperty ;
 	rdfs:domain h:Person ;
 	rdfs:range h:Person ;
 	rdfs:label "has for spouse"@en, "est en ménage avec"@fr ;
 	rdfs:comment "a person's partner in marriage."@en, "le partenaire d'une personne dans un mariage."@fr .
 
 h:hasUncle
-    a owl:ObjectProperty ; 
+    a owl:ObjectProperty ;
     owl:propertyChainAxiom( h:hasParent h:hasBrother ) .
 
 h:hasFriend
 	# 1.
-	a owl:ObjectProperty, owl:SymmetricProperty ;
+	a owl:ObjectProperty, owl:SymmetricProperty , owl:ReflexiveProperty ;
 	rdfs:domain h:Person ;
 	rdfs:range h:Person ;
 	rdfs:label "has for friend"@en, "a pour ami"@fr ;
 	rdfs:comment "relation between a person and another person he or she knows well and regards with affection and trust."@en, "relation entre une personne et une autre personne qui est l'objet d'un attachement privilégié."@fr .
 
+h:EyeColor
+	rdf:type owl:Class ;
+	owl:oneOf( h:Blue h:Green h:Brown h:Black).
 # DatatypeProperty
 
 h:name
-	a owl:DatatypeProperty ;
+	a owl:DatatypeProperty , owl:InverseFunctionalProperty ;
 	rdfs:label "name"@en, "nom"@fr ;
 	rdfs:comment "designation of something."@en, "désignation de quelque chose."@fr .
 
@@ -177,3 +183,15 @@ h:trouserssize
 	rdfs:domain h:Person ;
 	rdfs:label "trousers size"@en, "size"@en, "taille de pantalon"@fr, "taille"@fr ;
 	rdfs:comment "express in some way the approximate dimensions of the trousers of a person."@en, "dimensions approximatives des pantalons portés par une personne."@fr .
+
+h:Blue
+	a owl:DatatypeProperty .
+
+h:Green
+ 	a owl:DatatypeProperty .
+
+h:Brown
+	a owl:DatatypeProperty .
+
+h:Black
+	a owl:DatatypeProperty .

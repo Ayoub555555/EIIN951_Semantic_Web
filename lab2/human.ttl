@@ -19,7 +19,8 @@ i:John
 	h:age 37 ;
 	h:shirtsize 12 ;
 	h:trouserssize 44 ;
-	h:hasParent i:Sophie .
+	h:hasParent i:Sophie ;
+	h:hasBrother i:David .
 
 i:Mark
 	a h:Person ;
@@ -121,3 +122,6 @@ i:Catherine
 		rdf:_2 i:John;
 		rdf:_3 i:Mark;
 	] .
+
+i:Unknown
+	h:name "John"
