@@ -137,6 +137,10 @@ h:hasSpouse
 	rdfs:label "has for spouse"@en, "est en ménage avec"@fr ;
 	rdfs:comment "a person's partner in marriage."@en, "le partenaire d'une personne dans un mariage."@fr .
 
+h:hasUncle
+    a owl:ObjectProperty ; 
+    owl:propertyChainAxiom( h:hasParent h:hasBrother ) .
+
 h:hasFriend
 	# 1. 
 	a owl:ObjectProperty, owl:SymmetricProperty ;
