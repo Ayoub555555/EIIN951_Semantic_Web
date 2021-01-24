@@ -25,13 +25,6 @@ where {
 	?x ?p ?y .
 }
 ```
-```{sparql}
-construct { ?y ?q ?x }
-where {
-	?p owl:inverseOf ?q .
-	?x ?q ?y .
-}
-```
 
 ## transitive properties
 ```{sparql}
