@@ -30,25 +30,28 @@ h:Female
 	rdfs:comment " an animal that produces gametes (ova) that can be fertilized by male gametes (spermatozoa)."@en, "animal appartenant au sexe apte à produire des ovules."@fr .
 
 h:Person
-	a owl:Class ,
-	# 7.
-	[a owl:Restriction; owl:onProperty h:hasSpouse; owl:onClass h:Man; owl:allValuesFrom h:Woman] ,
-	[a owl:Restriction; owl:onProperty h:hasSpouse; owl:onClass h:Woman; owl:allValuesFrom h:Man] ,
+	a owl:Class ;
 	# 8.
-	[a owl:Restriction; owl:onProperty h:hasParent; owl:someValuesFrom h:Woman] ;
+	owl:equivalentClass [a owl:Restriction; owl:onProperty h:hasParent; owl:someValuesFrom h:Woman] ;
 	rdfs:subClassOf h:Animal ;
 	rdfs:label "person"@en, "human being"@en, "human"@en, "personne"@fr, "être humain"@fr, "humain"@fr, "homme"@fr ;
 	rdfs:comment "a member of the human species"@en, "un membre de l'espèce humaine."@fr .
 
 h:Man
 	a owl:Class ;
-	rdfs:subClassOf h:Person, h:Male ;
+	rdfs:subClassOf h:Person, h:Male,
+	# 7.1.
+	[ a owl:Restriction;
+	owl:onProperty h:hasSpouse; owl:allValuesFrom h:Woman ] ;
 	rdfs:label "man"@en, "homme"@fr ;
 	rdfs:comment "an adult male person"@en, "mâle adulte de l'espèce humaine."@fr .
 
 h:Woman
 	a owl:Class ;
-	rdfs:subClassOf h:Person, h:Female ;
+	rdfs:subClassOf h:Person, h:Female ,
+	#7.2.
+	[a owl:Restriction;
+	owl:onProperty h:hasSpouse; owl:allValuesFrom h:Man] ;
 	rdfs:label "woman"@en, "femme"@fr ;
 	rdfs:comment "an adult female person"@en, "femelle adulte de l'espèce humaine."@fr .
 

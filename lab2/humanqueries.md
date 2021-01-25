@@ -213,7 +213,7 @@ where {
 
 ##	Query 12 : classs union
 ### *Description*
-On verifie dans les types d'une personne qui est Researcher et Lecturer s'il y a Academic
+On verifie dans les types d'une personne qui est Researcher et Lecturer s'il y a Academic (marche aussi avec une seule des deux classes)
 
 ### *Query*
 ```{sparql}
@@ -226,233 +226,75 @@ where {
  "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?x1)
 	BIND(REPLACE(?y,
  "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?y1)
-} 
-```
-
-##	Query 13 : class intersection
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
 }
 ```
 
-##	Query 14 : class negation
+##	Query 13 : disjoint between two classes
 ### *Description*
-
+Nous avons William qui est de type Male et Female on teste s'il ressort avec une query
 
 ### *Query*
 ```{sparql}
-select *
+select ?x1 
 where {
-	
+	?x a h:Male
+	?x a h:Female
+	BIND(REPLACE(?x,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?x1)
 }
 ```
 
-##	Query 15 : disjoint between two classes
+##	Query 14 : class intersection
 ### *Description*
-
+On prend un sujet qui a le type researcher et lecturer et on verifie qu'il possède le type professor
 
 ### *Query*
 ```{sparql}
-select *
+select ?x1 ?y1
 where {
-	
+	?x a h:Lecturer
+	?x a h:Researcher
+	?x rdf:type ?y
+	BIND(REPLACE(?x,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?x1)
+	BIND(REPLACE(?y,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?y1)
 }
 ```
 
-##	Query 16 : disjoint between several classes
-### *Description*
 
+##	Query 15 : Restriction all Values from
+### *Description*
+on teste si une personne marriée à un homme est une femme et vice-versa
 
 ### *Query*
 ```{sparql}
-select *
+select ?x1 ?y1
 where {
-	
+	?x a h:Man
+	?x h:hasSpouse ?y
+	?y a h:Woman
+	BIND(REPLACE(?x,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?x1)
+	BIND(REPLACE(?y,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?y1)
 }
 ```
 
-##	Query 17 : disjoint union
+##	Query 16 : Restriction some Values
 ### *Description*
-
+On regarde pour chaque personne si l'une d'entre elle a pour parent une femme dès qu'on en trouve une la régle est respectée
 
 ### *Query*
 ```{sparql}
-select *
+select ?x1 ?y1 ?z
 where {
-	
-}
-```
-
-##	Query 18 : equivalent classes
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 19 : equivalent properties
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 20 : same resources
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 21 : different resources
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 22 : identification by Keys
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 23 : restriction of property values
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 24 : restriction of some property values
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 25 : restriction to a single property value
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 26 : restriction of a property value to its subject
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 27 : cardinalityrestriction
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 28 : qualified cardinality restriction
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 29 : restriction to a single property value
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 30 : description of an ontology
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
-}
-```
-
-##	Query 31 : changes in classes or properties
-### *Description*
-
-
-### *Query*
-```{sparql}
-select *
-where {
-	
+	?x a h:Person
+	?x h:hasParent+ ?y
+	?y a ?z
+	BIND(REPLACE(?x,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?x1)
+	BIND(REPLACE(?y,
+ "http://www\\.inria\\.fr/2007/09/11/humans\\.rdfs-instances#", "#") AS ?y1)
 }
 ```

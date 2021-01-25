@@ -89,7 +89,7 @@ i:Gaston
 	h:hasChild i:Pierre, i:Jack .
 
 i:William
-	a h:Person ;
+	a h:Person, h:Female , h:Male;
 	h:hasSpouse i:Laura ;
 	h:shoesize 10 ;
 	h:age 42 ;
